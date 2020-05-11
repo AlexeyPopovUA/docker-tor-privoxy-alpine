@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  tor-privoxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+    image: tor-privoxy:local
+    restart: unless-stopped
+    volumes:
+      - ./service/:/etc/service/
+    ports:
+      - 8118:8118/tcp
+      - 9050:9050/tcp
+
+networks:
+  default:
+    external:
+      name: br0
